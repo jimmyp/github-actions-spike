@@ -1,0 +1,17 @@
+name: Opened Pull Request
+
+# only trigger on pull request closed events
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  run_if:
+    runs-on: ubuntu-latest
+    steps:
+    - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+      run: |
+        echo $EVENT_CONTEXT | jq
+    - run: |
+        echo PR #${{ github.event.number }} has been opened
