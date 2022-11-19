@@ -9,9 +9,5 @@ jobs:
   run_if:
     runs-on: ubuntu-latest
     steps:
-    - env:
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
-      run: |
-        echo $EVENT_CONTEXT | jq
     - run: |
         echo PR #${{ github.event.number }} has been opened
